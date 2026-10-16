@@ -22,8 +22,6 @@ Dự án nghiên cứu và xây dựng bộ dữ liệu **2.5D Semantic Elevatio
   - Mức giảm thiểu rủi ro địa hình so với chỉ dùng độ cao hình học: **29.24%**.
   - Né tránh được hơn **9,000 điểm rủi ro cao** (hố bùn, bụi rậm, đá lổn nhổn).
 
-📄 **Báo cáo kỹ thuật chi tiết:** Xem tại [**`BAO_CAO_DE_TAI.md`**](BAO_CAO_DE_TAI.md).
-
 ---
 
 ## 📊 3. Dashboard Mẫu (6 Góc Nhìn)
@@ -35,7 +33,6 @@ Dự án nghiên cứu và xây dựng bộ dữ liệu **2.5D Semantic Elevatio
 ## 📁 4. Cấu Trúc Mã Nguồn
 
 ```text
-├── BAO_CAO_DE_TAI.md         # Báo cáo kỹ thuật nghiệm thu chi tiết đề tài
 ├── README.md                 # Tài liệu tổng quan dự án
 ├── process_rellis_25d.py     # Pipeline xử lý 3 giai đoạn cốt lõi
 ├── run_batch_2_3_4.py        # Script batch runner xử lý hàng loạt sequence đa luồng
