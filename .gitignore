@@ -1,0 +1,18 @@
+# Large binary & ZIP archives (15GB LiDAR)
+*.zip
+*.tar.gz
+*.bin
+*.label
+
+# Generated full datasets (13,556 frames, ~3.26 GB)
+out_*/
+output_*/
+data_extracted/
+
+# Python & IDE
+__pycache__/
+*.py[cod]
+*$py.class
+.vscode/
+.idea/
+*.log
