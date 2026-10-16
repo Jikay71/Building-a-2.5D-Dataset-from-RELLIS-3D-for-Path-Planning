@@ -1,5 +1,5 @@
 """
-Batch runner to process sequences 00002, 00003, 00004 sequentially.
+Batch runner to process sequences 00000, 00001, 00002, 00003, 00004 sequentially.
 """
 import sys
 import os
@@ -13,7 +13,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 os.environ["PYTHONIOENCODING"] = "utf-8"
 
-SEQUENCES = ["00002", "00003", "00004"]
+SEQUENCES = ["00000", "00001", "00002", "00003", "00004"]
 WORKERS = 8
 PREVIEW_EVERY = 50
 
@@ -33,12 +33,13 @@ def verify_output(out_dir: Path):
     return len(npz_files), len(png_files), corrupted_png
 
 def main():
+    skip_existing = "--skip_existing" in sys.argv
     t_global_start = time.time()
     results = {}
 
     print(f"\n============================================================")
     print(f" BAT DAU BATCH PROCESS CHO CAC SEQUENCES: {', '.join(SEQUENCES)}")
-    print(f" So luong (Workers): {WORKERS} | Preview every: {PREVIEW_EVERY}")
+    print(f" So luong (Workers): {WORKERS} | Preview every: {PREVIEW_EVERY} | Skip existing: {skip_existing}")
     print(f"============================================================\n", flush=True)
 
     for idx, seq in enumerate(SEQUENCES, 1):
@@ -57,6 +58,8 @@ def main():
             "--preview_every", str(PREVIEW_EVERY),
             "--out", str(out_folder)
         ]
+        if skip_existing:
+            cmd.append("--skip_existing")
         
         proc = subprocess.run(cmd)
         if proc.returncode != 0:
@@ -73,13 +76,13 @@ def main():
         print(f">>> [HOAN THANH SEQUENCE {seq}] NPZ: {npz_cnt} | PNG: {png_cnt} | Loi anh: {len(corrupted)} | Thoi gian: {int(t_seq_elapsed//60)}m {int(t_seq_elapsed%60):02d}s\n", flush=True)
 
     t_global_elapsed = time.time() - t_global_start
-    print("\n" + "=" * 60)
-    print(" BAO CAO TONG KET TOAN BO 3 SEQUENCES (00002, 00003, 00004)")
-    print("=" * 60)
+    print("\n" + "=" * 65)
+    print(f" BAO CAO TONG KET TOAN BO {len(SEQUENCES)} SEQUENCES ({', '.join(SEQUENCES)})")
+    print("=" * 65)
     for seq, r in results.items():
         print(f"Sequence {seq} -> out_{seq}: {r['npz']} .npz, {r['png']} .png, {r['corrupted']} corrupted | {int(r['elapsed_sec']//60)}m {int(r['elapsed_sec']%60):02d}s")
     print(f"Tong thoi gian toan bo: {int(t_global_elapsed//60)} phut {int(t_global_elapsed%60):02d} giay")
-    print("=" * 60 + "\n", flush=True)
+    print("=" * 65 + "\n", flush=True)
 
 if __name__ == "__main__":
     main()

@@ -35,7 +35,7 @@ Dự án nghiên cứu và xây dựng bộ dữ liệu **2.5D Semantic Elevatio
 ```text
 ├── README.md                 # Tài liệu tổng quan dự án
 ├── process_rellis_25d.py     # Pipeline xử lý 3 giai đoạn cốt lõi
-├── run_batch_2_3_4.py        # Script batch runner xử lý hàng loạt sequence đa luồng
+├── run_batch_0_1_2_3_4.py    # Script batch runner xử lý hàng loạt 5 sequences đa luồng
 ├── evaluate_metrics.py       # Script tính toán các chỉ số định lượng đánh giá thuật toán
 ├── demo_load_dataset.py      # Script Python mẫu hướng dẫn load và truy xuất file .npz
 ├── create_animation_gif.py   # Script tạo ảnh động demo từ các ảnh preview
@@ -78,7 +78,12 @@ Mỗi file `.npz` bao gồm:
 python evaluate_metrics.py
 ```
 
-### 5.4. Xử lý thêm một Sequence mới bất kỳ:
+### 5.4. Chạy tự động hàng loạt toàn bộ 5 Sequences (00000 -> 00004):
+```bash
+python run_batch_0_1_2_3_4.py
+```
+
+### 5.5. Xử lý thêm một Sequence mới bất kỳ:
 ```bash
 python process_rellis_25d.py --seq 00005 --all --workers 8 --preview_every 50 --out out_00005
 ```
